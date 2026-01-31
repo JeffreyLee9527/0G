@@ -13,5 +13,6 @@ docs/
 # Dependencies
 node_modules/
 
-# Dotenv file
+# Dotenv file (all .env files excluded)
 .env
+**/.env
