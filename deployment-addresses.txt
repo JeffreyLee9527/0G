@@ -1,0 +1,8 @@
+=== 0G Galileo Testnet Deployment ===
+Network: 0G Galileo (CHAIN_ID: 16602)
+RPC: https://evmrpc-testnet.0g.ai
+
+# 最新部署地址 (2025-01-31)
+StrategyNFT: 0x8d0999A40C55e173c0aDC6F87ccC280cD861cBd8
+Arena: 0x1A6A709672Cd8469e3760C6d5B2d4d60f7871493
+Ranking: 0xD6f9724f7B56053230beB769157c7f06d8f1A654
