@@ -1,0 +1,15 @@
+{
+  "name": "deai-dapp-contract",
+  "version": "1.0.0",
+  "description": "Verifiable AI Trading Arena - Solidity contracts",
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test",
+    "deploy": "forge script script/Deploy.s.sol:DeployScript --rpc-url $env:RPC_URL --private-key $env:PRIVATE_KEY --broadcast -vvvv"
+  },
+  "keywords": ["solidity", "foundry", "0g"],
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0"
+  }
+}

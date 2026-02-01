@@ -1,5 +1,7 @@
 # 从 broadcast JSON 解析合约地址，生成 frontend/.env.local
-$broadcastPath = "broadcast/Deploy.s.sol/16602/run-latest.json"
+$broadcastPath = "contract/broadcast/Deploy.s.sol/16602/run-latest.json"
+$scriptRoot = Split-Path -Parent $PSScriptRoot
+$broadcastPath = Join-Path $scriptRoot $broadcastPath
 if (-not (Test-Path $broadcastPath)) {
     Write-Error "Broadcast file not found: $broadcastPath"
     exit 1
@@ -33,6 +35,6 @@ VITE_STRATEGY_NFT_CONTRACT=$strategyNFT
 VITE_RANKING_CONTRACT=$ranking
 "@
 
-$outPath = "frontend/.env.local"
+$outPath = Join-Path $scriptRoot "frontend/.env.local"
 $envContent | Set-Content -Path $outPath -Encoding utf8
 Write-Host "Generated $outPath"

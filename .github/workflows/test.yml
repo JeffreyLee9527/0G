@@ -24,17 +24,21 @@ jobs:
         run: |
           forge --version
 
+      - name: Install contract dependencies
+        run: |
+          cd contract && npm install
+
       - name: Run Forge fmt
         run: |
-          forge fmt --check
+          cd contract && forge fmt --check
         id: fmt
 
       - name: Run Forge build
         run: |
-          forge build --sizes
+          cd contract && forge build --sizes
         id: build
 
       - name: Run Forge tests
         run: |
-          forge test -vvv
+          cd contract && forge test -vvv
         id: test

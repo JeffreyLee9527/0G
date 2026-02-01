@@ -150,7 +150,7 @@ npm run dev
 
 ## MVP 部署信息
 
-- **合约**：0G Galileo (CHAIN_ID: 16602)，见 [deployment-addresses.txt](deployment-addresses.txt)
+- **合约**：0G Galileo (CHAIN_ID: 16602)，见 [contract/deployment-addresses.txt](contract/deployment-addresses.txt)
 - **前端**：本地 `npm run dev` 或 `npm run preview`（生产构建后）
 - **水龙头**：https://faucet.0g.ai/
 
@@ -169,17 +169,24 @@ npm run dev
 ### 1. 部署合约
 
 ```bash
-# 配置 .env (PRIVATE_KEY, RPC_URL)
+# 配置项目根目录 .env (PRIVATE_KEY, RPC_URL)
+cd contract
+npm install
 forge build
 forge script script/Deploy.s.sol:DeployScript \
-  --rpc-url $RPC_URL \
-  --private-key $PRIVATE_KEY \
+  --rpc-url $env:RPC_URL \
+  --private-key $env:PRIVATE_KEY \
   --broadcast -vvvv
+```
+
+或使用脚本（从项目根目录）：
+```powershell
+.\scripts\deploy.ps1
 ```
 
 ### 2. 配置前端
 
-若重新部署合约，运行 `scripts/post-deploy.ps1` 或手动更新 `frontend/.env.local`：
+若重新部署合约，从项目根目录运行 `scripts/post-deploy.ps1` 或手动更新 `frontend/.env.local`：
 
 ```env
 VITE_ARENA_CONTRACT=0x1A6A709672Cd8469e3760C6d5B2d4d60f7871493
@@ -211,15 +218,21 @@ npm run dev
 ## 项目结构
 
 ```
-├── src/           # Foundry 合约
-│   ├── Arena.sol
-│   ├── StrategyNFT.sol
-│   ├── Ranking.sol
-│   └── interfaces/
-├── script/        # 部署脚本
-├── test/          # Foundry 测试
-├── frontend/      # React 前端
-└── img/           # 文档与演示图片
+deai-dapp-v2/          # 父工程
+├── contract/          # 合约子工程 (Foundry)
+│   ├── src/           # Solidity 合约
+│   │   ├── Arena.sol
+│   │   ├── StrategyNFT.sol
+│   │   ├── Ranking.sol
+│   │   └── interfaces/
+│   ├── script/        # 部署脚本
+│   ├── test/          # Foundry 测试
+│   ├── lib/           # 依赖 (forge-std, openzeppelin)
+│   └── broadcast/     # 部署记录
+├── frontend/          # 前端子工程 (React + Vite)
+├── scripts/           # 部署脚本 (deploy.ps1, post-deploy.ps1)
+├── img/               # 文档与演示图片
+└── README.md
 ```
 
 ---

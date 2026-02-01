@@ -1,4 +1,7 @@
-# 加载 .env
+# 项目根目录与合约目录
+$projectRoot = Split-Path -Parent $PSScriptRoot
+$contractDir = Join-Path $projectRoot "contract"
+Set-Location $projectRoot
 Get-Content .env | ForEach-Object {
     if ($_ -match '^([^#][^=]+)=(.*)$') {
         $key = $matches[1].Trim()
@@ -12,6 +15,7 @@ if ($pk -and -not $pk.StartsWith("0x")) { $pk = "0x" + $pk }
 
 # 0G Galileo 需 >=2 gwei，略高以确保确认
 $gasPrice = "3000000000"
+Push-Location $contractDir
 forge script script/Deploy.s.sol:DeployScript `
   --rpc-url $env:RPC_URL `
   --private-key $pk `
@@ -19,3 +23,4 @@ forge script script/Deploy.s.sol:DeployScript `
   --legacy `
   --with-gas-price $gasPrice `
   -vvvv
+Pop-Location
