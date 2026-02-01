@@ -1,6 +1,6 @@
 # Verifiable AI Trading Arena
 
-**0G 黑客松 MVP** — 可验证的 AI 交易竞技场 · 让 AI 交易从概率变成科学
+  可验证的 AI 交易竞技场 · 让 AI 交易从概率变成科学
 
 ---
 
